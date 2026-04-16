@@ -95,6 +95,22 @@ The game features multiple tile types with dynamic behaviors and includes a full
 - Add difficulty levels  
 - Improve UI polish and responsiveness  
 
+---
 
+## 🤖 AI & External Resources
+
+AI tools were used primarily to assist with frontend styling, UI structure, and minor implementation details.
+
+### AI Usage
+- Assisted in writing and refining **SCSS/CSS styles**
+- Helped generate and improve **UI layout structure**
+- Supported creation of **basic animations and visual enhancements**
+- Provided guidance for **component structure and organization**
+
+### External Resources
+- Angular documentation for framework usage and best practices  
+- General web development references for layout and styling techniques  
+
+All core game logic, functionality, and overall application flow were designed and implemented independently, with AI used mainly as a support tool for frontend polish and structure.
 
 
