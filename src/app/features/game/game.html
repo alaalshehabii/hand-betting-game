@@ -1,0 +1,117 @@
+
+<div class="game-shell" *ngIf="state">
+  <div class="sky-layer">
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+    <div class="cloud cloud-three"></div>
+    <div class="cloud cloud-four"></div>
+    <div class="spark spark-one"></div>
+    <div class="spark spark-two"></div>
+    <div class="spark spark-three"></div>
+  </div>
+
+  <div class="game-content">
+    <header class="top-bar">
+      <div class="title-block">
+        <div class="pixel-badge">HAND BETTING GAME</div>
+        <h1>Make your prediction</h1>
+        <p class="subtitle">
+          Current hand total: <strong>{{ state.currentHand?.total }}</strong>
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">Score</span>
+          <span class="stat-value">{{ state.score }}</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">Draw</span>
+          <span class="stat-value">{{ state.drawPile.length }}</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">Discard</span>
+          <span class="stat-value">{{ state.discardPile.length }}</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">Reshuffles</span>
+          <span class="stat-value">{{ state.reshuffleCount }}</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="message-bar" [ngClass]="resultTone">
+      {{ lastRoundMessage }}
+    </section>
+
+    <section class="cards-stage">
+      <div
+        class="pixel-card"
+        *ngFor="let tile of state.currentHand?.tiles; let i = index; trackBy: trackByIndex"
+        [class.center]="i === 1"
+        [class.animate-card]="animateCards"
+      >
+        <div class="card-inner">
+          <div class="card-category">{{ tile.category | uppercase }}</div>
+          <div class="card-label">{{ tile.label }}</div>
+          <div class="card-value">{{ tile.currentValue }}</div>
+          <div class="card-footer">
+            <span *ngIf="tile.category === 'number'">Number Tile</span>
+            <span *ngIf="tile.category === 'dragon'">Dragon Tile</span>
+            <span *ngIf="tile.category === 'wind'">Wind Tile</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="totals-row">
+      <div class="total-chip">Hand Total: {{ state.currentHand?.total }}</div>
+      <div class="total-chip" *ngIf="state.previousHand">
+        Previous Total: {{ state.previousHand.total }}
+      </div>
+    </section>
+
+    <section class="action-panel" *ngIf="!state.isGameOver">
+      <button
+        class="pixel-btn higher-btn"
+        (click)="bet('higher')"
+        [disabled]="isResolvingRound || state.isGameOver"
+      >
+        Bet Higher
+      </button>
+
+      <button
+        class="pixel-btn lower-btn"
+        (click)="bet('lower')"
+        [disabled]="isResolvingRound || state.isGameOver"
+      >
+        Bet Lower
+      </button>
+    </section>
+
+    <section class="history-panel" *ngIf="state.previousHand">
+      <div class="history-title">Previous Hand</div>
+
+      <div class="history-total">
+        Total: {{ state.previousHand.total }}
+      </div>
+
+      <div class="history-cards">
+        <div class="mini-card" *ngFor="let tile of state.previousHand.tiles">
+          <div class="mini-label">{{ tile.label }}</div>
+          <div class="mini-value">{{ tile.currentValue }}</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom-actions">
+      <button class="pixel-btn home-btn" (click)="goHome()">Exit Game</button>
+    </section>
+  </div>
+</div>
+
+
+

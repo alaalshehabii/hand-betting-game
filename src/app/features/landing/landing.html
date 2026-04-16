@@ -1,0 +1,42 @@
+<div class="landing-shell">
+  <div class="sky-layer">
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+    <div class="cloud cloud-three"></div>
+    <div class="spark spark-one"></div>
+    <div class="spark spark-two"></div>
+  </div>
+
+  <div class="landing-content">
+    <div class="hero-card">
+      <div class="pixel-badge">MAHJONG HAND CHALLENGE</div>
+      <h1>Hand Betting Game</h1>
+      <p class="subtitle">
+        Predict whether the next Mahjong-style hand will be higher or lower,
+        build your score, and survive the shifting value of dragons and winds.
+      </p>
+
+      <button class="start-btn" (click)="startGame()">Start New Game</button>
+
+      <section class="leaderboard">
+        <div class="leaderboard-header">
+          <h2>Top Scores</h2>
+          <span>Best 5 runs</span>
+        </div>
+
+        <div *ngIf="topScores.length === 0" class="empty-state">
+          No scores yet. Start the first run.
+        </div>
+
+        <div *ngFor="let entry of topScores; let index = index" class="score-row">
+          <div class="score-left">
+            <span class="rank-chip">{{ index + 1 }}</span>
+            <span class="score-value">{{ entry.score }} pts</span>
+          </div>
+
+          <span class="score-date">{{ entry.playedAt | date:'mediumDate' }}</span>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

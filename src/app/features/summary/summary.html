@@ -1,0 +1,32 @@
+
+<div class="summary-shell">
+  <div class="sky-layer">
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+    <div class="cloud cloud-three"></div>
+    <div class="spark spark-one"></div>
+    <div class="spark spark-two"></div>
+  </div>
+
+  <div class="summary-content">
+    <div class="summary-card">
+      <div class="pixel-badge">ROUND COMPLETE</div>
+
+      <h1>Game Over</h1>
+
+      <p class="reason">
+        {{ state.gameOverReason || 'Your run has ended.' }}
+      </p>
+
+      <div class="score-panel">
+        <div class="score-label">Final Score</div>
+        <div class="score-value">{{ state.score }}</div>
+      </div>
+
+      <div class="actions">
+        <button class="pixel-btn play-btn" (click)="playAgain()">Play Again</button>
+        <button class="pixel-btn home-btn" (click)="goToLanding()">Back to Home</button>
+      </div>
+    </div>
+  </div>
+</div>
